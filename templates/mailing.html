@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Manage mailing list</title>
+
+{% endblock %}
+
+{% block body %}
+<div class="back">
+    <div class="mail-container">
+        <a href=" {{ url_for('index') }}"><button id="back" class="mailing-list">Home</button></a>
+    </div>
+    <div>
+        <h1>Manage mailing list</h1>
+    </div>
+    <div>
+    </div>
+</div>
+<div class="table-container">
+    <table class="table">
+        <tr>
+            <th>Member ID</th>
+            <th>Name</th>
+            <th>Email Address</th>
+            <th>Date added</th>
+            <th>Actions</th>
+        </tr>
+        <tbody>
+        {% for member in members %}
+            <tr>
+                <td>{{ member.id }}</td>
+                <td>{{ member.name }}</td>
+                <td>{{ member.email }}</td>
+                <td>{{ member.date_added.strftime("%a %d %b %Y %H:%M") }}</td>
+                <td>
+                    <a href="/edit/{{member.id}}">Edit</a>
+                    <br>
+                    <a href="/delete/{{member.id}}">Delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Edit member details</title>
+
+{% endblock %}
+
+{% block body %}
+<div>
+    <h1>Edit member details</h1>
+</div>
+<div class="table-container">
+    <form action="/edit/{{member.id}}" method="POST">
+        <table class="table">
+            <tr>
+                <th>Member ID</th>
+                <th>Name</th>
+                <th>Email Address</th>
+                <th>Date added</th>
+            </tr>
+            <tbody>
+                <tr>
+                    <td>{{ member.id }}</td>
+                    <td name="name"><input type="text" name="name" value="{{ member.name }}"></td>
+                    <td name="email"><input type="email" name="email" value="{{ member.email }}"></td>
+                    <td>{{ member.date_added.strftime("%a %d %b %Y %H:%M") }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <input id="edit-submit" class="submit" type="submit" value="Update">
+    </form>
+</div>
+{% endblock %}
