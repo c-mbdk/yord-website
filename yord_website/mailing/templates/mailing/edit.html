@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Edit member details</title>
+
+{% endblock %}
+
+{% block body %}
+
+<section id="editing-mailing-section">
+    {% if error_updating_member %}
+    <div id="alert-container-edit">
+        <div class="alert edit-member-error">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            There was an issue updating this member's details. Please try again.
+        </div>
+    </div>
+    {% endif %}
+    <div id="editing-mailing-title">
+        <h1>Edit member details</h1>
+    </div>
+    <div class="table-container">
+        <form action="#" method="POST" id="edit-member-form">
+            {{ form.csrf_token }}
+            <table class="table">
+                <tr>
+                    <th>Member ID</th>
+                    <th>Name</th>
+                    <th>Email Address</th>
+                    <th>Date added</th>
+                </tr>
+                <tbody>
+                    <tr>
+                        <td>{{ member.id }}</td>
+                        <td name="name">{{ form.name }}</td>
+                        <td name="email">{{ form.email }}</td>
+                        <td>{{ member.date_added.strftime("%a %d %b %Y %H:%M") }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <input id="edit-submit" class="submit" type="submit" value="update">
+        </form>
+    </div>
+</section>
+{% endblock %}

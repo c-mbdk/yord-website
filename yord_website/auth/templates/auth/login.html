@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Log in</title>
+<link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+{% endblock %}
+
+
+{% block body %}
+<section class="login-page-section">
+    {% if error_login_alert %}
+    <div class="alert unsuccessful-login">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        Unsuccessful login attempt. Please try again.
+    </div>
+    {% endif %}
+    <div class="form_container">
+        <div class="login-img-container">
+            <img src="{{ url_for('static', filename='images/login_icon.png') }}" alt="head and shoulders of a person" class="login-img">
+        </div>
+        <div class="form login_form">
+            <form action="{{ url_for('auth.login') }}" id="log-in-form" method="POST">
+                {{ form.csrf_token }}
+                <h2>Log in</h2>
+
+                <div class="input_box">
+                    {{ form.username }}
+                    <i class="uil uil-envelope-alt email"></i>
+                </div>
+                <div class="input_box">
+                    {{ form.password }}
+                    <i class="uil uil-lock password"></i>
+                </div>
+
+                <div class="option_field">
+                    <span class="checkbox">
+                        {{ form.remember_me }}
+                        <label for="remember_me">Remember me</label>
+                    </span>
+                </div>
+                {{form.submit}}
+            </form>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

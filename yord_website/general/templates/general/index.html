@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Home</title>
+{% endblock %}
+
+{% block body %}
+<section class="register-wrapper">
+  {% if email_registered_alert %}
+  <div class="alert email-registered">
+    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+    This email is already registered.
+  </div>
+  {% endif %}
+  <div class="register-container">
+    <div class="register-img-container">
+      <img src="{{ url_for('static', filename='images/mailing_list_purple.png') }}" class="register-img" alt="open brown envelope with white paper sticking out on purple background and the number one in white writing on a red circle">
+    </div>
+    <div class="register-content">
+      <div class="form">
+        <form action="#" method="POST" id="register-mailing-form">
+          {{ form.csrf_token }}
+        <h2 class="subtitle">Subscribe today</h2>
+        <h1 class="title">Join our mailing list!</h1>
+        <div class="input-container ic1">
+          {{ form.name }}
+          <div class="cut"></div>
+        </div>  
+        <div class="input-container ic2">
+          {{ form.email}}
+          <div class="cut cut-short"></div>
+          <div class="cut"></div>
+        </div>
+        <input class="submit register-submit" type="submit" value="submit">
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

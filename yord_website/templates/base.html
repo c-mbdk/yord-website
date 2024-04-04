@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href=" {{url_for('static', filename='css/main.css')}}">
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+    {% block head %}{% endblock %}
+  </head>
+  <body>
+    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
+  <div class="nav-container">
+    <div class="center">
+      <nav class="navbar">
+        <div class="wrapper">
+          <div class="nav-logo">
+            <div class="logo">
+              <a href="{{ url_for('general.home') }}"><img src="{{ url_for('static', filename='images/yord_logo.png')}}" alt="YORD logo in blue writing"></a>
+            </div>
+          </div>
+          <div class="nav-menu-section">
+            <ul class="nav-menu">
+              <li class="nav-item"><a href="{{ url_for('general.home') }}" class="nav-link">Home</a></li>
+              {% if not current_user.is_authenticated %}
+              <li class="nav-item"><a href="{{ url_for('auth.login') }}" class="nav-link">Log in</a></li>
+              {% else %}
+              <li class="nav-item"><a href="{{ url_for('auth.logout') }}" class="nav-link">Log out</a></li>
+              <li class="nav-item"><a href="{{ url_for('mailing.view_members') }}" class="nav-link">Mailing List</a></li>
+              {% endif %}
+              <li class="nav-item"><a href="{{ url_for('general.about') }}" class="nav-link">About</a></li>
+              <li class="nav-item"><a href="{{ url_for('general.gallery') }}" class="nav-link">Gallery</a></li>
+              <li class="nav-item"><a href="{{ url_for('general.contact') }}" class="nav-link">Contact Us</a></li>
+          </ul>
+          <section class="navbar-mobile-icon">
+            <button class="menu-toggle" aria-expanded="false" aria-controls="nav-menu-ex-1"aria-label="Main Navigation Menu"><span class="screen-reader-text">Menu</span>
+              <svg class="icon icon-menu-toggle" aria-hidden="true" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 100 100">
+                <g class="svg-menu-toggle">
+                <path class="line line-1" d="M5 13h90v14H5z"/>
+                <path class="line line-2" d="M5 43h90v14H5z"/>
+                <path class="line line-3" d="M5 73h90v14H5z"/>
+                </g>
+              </svg>
+            </button>
+          </section>
+          </div>
+          <div class="nav-user">
+            <div id="user-detail-container">
+              <div id="user-detail">
+                {% if current_user.is_authenticated %}
+                <h3>Hi {{ current_user.email }}</h3>
+                {% else %}
+                <h3></h3>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+          </div>              
+        </div>
+      </nav>
+    </div>
+  </div>
+    {% block body%}{% endblock %}
+    <div class="pagerow whole-container" id="footer">
+      <div class="center">
+        <div class="footerdiv social-footer-left first">
+          <span>
+          <!-- <img src="{{ url_for('static', filename='images/yord_logo.png')}}" class="footer-logo">  © 2023 YORD  -->
+          © 2024 YORD
+        </span>
+        </div>
+        <div class="footerdiv social-footer-icons">
+            <a class="social-button facebook" href="https://www.facebook.com/CFTyord/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a class="social-button instagram" href="https://www.instagram.com/cft_yord" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a class="social-button twitter" href="https://www.twitter.com/cft_yord" target="_blank"><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+    </div>
+    <!-- Script for opening and closing menu -->
+    <script type="text/javascript" src="{{ url_for('static', filename='js/nav-menu.js') }}"></script>
+  </body>
+</html>

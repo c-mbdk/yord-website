@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Delete Error</title>
+{% endblock %}
+
+{% block body %}
+<div class="error-container">
+   <div class="error-header">
+        Oh no, that didn't work!
+    </div>
+    <p id="error-message">Something went wrong while trying to delete this member from the mailing list.</p> 
+</div>
+<script>
+    window.setTimeout(function() {
+
+        goToMailingList();
+    }, 3000);
+</script>
+{% endblock %}

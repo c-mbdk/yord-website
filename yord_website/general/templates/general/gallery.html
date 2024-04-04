@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Gallery</title>
+
+{% endblock %}
+
+{% block body %}
+<section class="photo-wrapper">
+    <ul>
+        <li></li>
+        <li><h2 id="gallery-header">PHOTO GALLERY</h2></li>
+        <li></li>
+        <li class="photo-item">
+            <a class="photo-link">
+                <figure class="photo-fig">
+                    <img class="photo-gal-img" id="photo-select" src="{{ url_for('static', filename='images/baptism_1.jpeg')}}" alt="2017 Limitless Youth Concert'">
+                    <figcaption class="photo-cap">Youth Limitless Concert 2017</figcaption>
+                </figure>
+            </a>
+        </li>
+        <li class="photo-item">
+            <a class="photo-link">
+                <figure class="photo-fig">
+                    <img class="photo-gal-img" src="{{ url_for('static', filename='images/open_mic_night_1.jpeg') }}" alt="1 main male singer and 4 backup singers in a hall of mirrors, singing to an audience">
+                    <figcaption class="photo-cap">Open Mic Night 2018</figcaption>
+                </figure>
+            </a>
+        </li>
+        <li class="photo-item">
+            <a class="photo-link">
+                <figure class="photo-fig">
+                    <img class="photo-gal-img" src="{{ url_for('static', filename='images/open_mic_night_2.jpeg') }}" alt="a person singing and playing the guitar in front of another person playing the guitar">
+                    <figcaption class="photo-cap">Youth Baptism 2019</figcaption>
+                </figure>
+            </a>
+        </li>
+        <li class="photo-item">
+            <a class="photo-link">
+                <figure class="photo-fig">
+                    <img class="photo-gal-img" src="{{ url_for('static', filename='images/the_return_poster_2019.jpeg')}}" alt="Youth Convention Poster for 2018 titled 'The Return'">
+                    <figcaption class="photo-cap">Youth Convention 2019</figcaption>
+                </figure>
+            </a>
+        </li>
+        <li class="photo-item">
+            <a class="photo-link">
+                <figure class="photo-fig">
+                    <img class="photo-gal-img" src="{{ url_for('static', filename='images/the_journey.jpeg')}}" alt="2021 Youth Convention Poster titled 'The Journey'">
+                    <figcaption class="photo-cap">Youth Convention 2021</figcaption>
+                </figure>
+            </a>
+        </li>
+        <li class="photo-item">
+            <a class="photo-link">
+                <figure class="photo-fig">
+                    <img class="photo-gal-img" src="{{ url_for('static', filename='images/loyal_to_the_cause.jpeg') }}" alt="2023 youth convention poster titled 'The Assignment: Loyal to the Cause">
+                    <figcaption class="photo-cap">Youth Convention 2023</figcaption>
+                </figure>
+            </a>
+        </li>
+    </ul>
+</section>
+
+{% endblock %}

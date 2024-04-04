@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Registration Error</title>
+{% endblock %}
+
+{% block body %}
+<div class="error-container">
+   <div class="error-header">
+        Oh no, that didn't work!
+    </div>
+    <p id="error-message">Something went wrong while trying to add you to our mailing list.</p> 
+     <button class="ui teal submit fluid button register" id="error-try-again" href="{{ url_for('general.home') }} " onclick="errorGoToHomepage()">Try again</button>
+</div>
+
+{% endblock %}

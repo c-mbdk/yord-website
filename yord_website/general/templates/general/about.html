@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>About Us</title>
+
+{% endblock %}
+
+{% block body %}
+<section class="about-us">
+    <div class="about-us-block">
+        <img src="{{ url_for('static', filename='images/youth_group.png') }}" class="about-pic" alt="silhouettes of young people standing in the sunset">
+        <div class="about-us-text">
+            <h2>About Us</h2>
+            <h5>What is YORD?</h5>
+            <p>CFT Youth of Royal Destiny is a youth group striving to bring out the best in every youth in a Godly and loving environment. We believe every youth is gifted by God and can contribute positively first to their community, then to the world.
+                    
+                Each year, we hold a youth conference, focused on empowering and enabling youth towards excellence. We're passionate about building transformational leaders for today and the future generation.
+            
+            For more information, hit the button below!</p>
+                <div class="about-us-contact">
+                    <a class="about-us-contact-btn submit" href="{{ url_for('general.contact') }}">Contact us</a>
+                </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

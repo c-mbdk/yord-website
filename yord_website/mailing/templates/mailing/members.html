@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Manage mailing list</title>
+
+{% endblock %}
+
+{% block body %}
+<section id="view-mailing-list">
+    {% if error_deleting_member %}
+    <div id="alert-container-manage-delete">
+        <div class="alert delete-member-error">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            There was an issue deleting the member from the mailing list. Please try again.
+        </div>
+    </div>
+    {% endif %}
+    <div id="mailing-container">
+        <div class="mailing-list-item" id="title-mailing-list">
+            <h1 id="mailing-list-text">Manage mailing list</h1>
+        </div>
+        <section id="mailing-mgmt">
+            {% if members %}
+            <div class="table-container mailing-list-item">
+                <table class="table">
+                    <tr>
+                        <th>Member ID</th>
+                        <th>Name</th>
+                        <th>Email Address</th>
+                        <th>Date added</th>
+                        <th>Actions</th>
+                    </tr>
+                    <tbody>
+                    {% for member in members %}
+                        <tr>
+                            <td>{{ member.id }}</td>
+                            <td>{{ member.name }}</td>
+                            <td>{{ member.email }}</td>
+                            <td>{{ member.date_added.strftime("%a %d %b %Y %H:%M") }}</td>
+                            <td>
+                                <a href="edit/{{member.id}}">Edit</a>
+                                <br>
+                                <a href="delete/{{member.id}}">Delete</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <h2>Ask people to sign up via the home page!</h2>
+            {% endif %}
+        </section>
+        <div id="page-mailing-list">
+        {% if page > 1 and members %}
+        <a href="{{ url_for('mailing.view_members', page=page-1) }}" class="page-links">Previous</a>
+        {% endif %}
+            <span>Page {{page}} of {{total_pages}}</span>
+        {% if page < total_pages and members %}
+        <a href="{{ url_for('mailing.view_members', page=page+1) }}" class="page-links">Next</a>
+        {% endif %}
+        </div>
+    </div> 
+</section>
+{% endblock %}
