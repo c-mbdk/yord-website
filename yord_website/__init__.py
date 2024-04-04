@@ -16,6 +16,8 @@ from .extensions import db, login_manager
 csrf_protect = CSRFProtect()
 login_manager.login_view = 'auth.login'
 BASEDIR = os.path.abspath(os.path.dirname(__file__))
+admin_username = f'{os.environ.get("ADMIN_USERNAME")}'
+admin_password = f'{os.environ.get("ADMIN_PASSWORD")}'
 
 # -----------------------------
 # Application Factory Function
@@ -40,8 +42,8 @@ def create_app():
             db.drop_all()
             from .models import User, Member
             db.create_all()
-            user = User(email = os.environ.get("ADMIN_USERNAME"))
-            user.set_password(os.environ.get("ADMIN_PASSWORD"))
+            user = User(email = admin_username)
+            user.set_password(admin_password)
             user.authenticated = True
             db.session.add(user)
             db.session.commit()
