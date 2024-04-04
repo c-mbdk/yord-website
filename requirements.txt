@@ -16,7 +16,7 @@ pytest==8.1.1
 iniconfig==2.0.0
 packaging==24.0
 pluggy==1.4.0
-exxceptiongroup==1.2.0
+exceptiongroup==1.2.0
 tomli==2.0.1
 email_validator==2.1.1
 dnspython==2.6.1
