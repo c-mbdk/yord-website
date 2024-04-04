@@ -7,7 +7,7 @@ class Config(object):
     FLASK_ENV = 'development'
     DEBUG = False
     TESTING = False
-    SECRET_KEY = os.environ.get("APP_SECRET_KEY")
+    SECRET_KEY = f'{os.environ.get("APP_SECRET_KEY")}'
     
     if os.getenv('DATABASE_URL'):
         SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL').replace("postgres://", "postgresql://", 1)
