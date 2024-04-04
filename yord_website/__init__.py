@@ -40,8 +40,8 @@ def create_app():
             db.drop_all()
             from .models import User, Member
             db.create_all()
-            user = User(email = os.environ["ADMIN_USERNAME"])
-            user.set_password(os.environ["ADMIN_PASSWORD"])
+            user = User(email = os.environ.get("ADMIN_USERNAME"))
+            user.set_password(os.environ.get("ADMIN_PASSWORD"))
             user.authenticated = True
             db.session.add(user)
             db.session.commit()

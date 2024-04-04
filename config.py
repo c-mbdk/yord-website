@@ -7,7 +7,7 @@ class Config(object):
     FLASK_ENV = 'development'
     DEBUG = False
     TESTING = False
-    SECRET_KEY = os.environ["APP_SECRET_KEY"]
+    SECRET_KEY = os.environ.get("APP_SECRET_KEY")
     
     if os.getenv('DATABASE_URL'):
         SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL').replace("postgres://", "postgresql://", 1)
@@ -18,7 +18,7 @@ class Config(object):
     LOG_WITH_GUNICORN = os.getenv('LOG_WITH_GUNICORN', default=False)
     EXPLAIN_TEMPLATE_LOADING = True   
     MEMBERS_PER_PAGE = 8
-    WTF_CSRF_SECRET_KEY = os.environ["CSRF_SECRET_KEY"]
+    WTF_CSRF_SECRET_KEY = os.environ.get("CSRF_SECRET_KEY")
 
 
 class ProductionConfig(Config):
