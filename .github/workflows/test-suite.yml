@@ -50,8 +50,6 @@ jobs:
           python3 app.py &
 
       - name: Run tests
-        env: 
-          DATABASE_URL: 'postgres://postgres:root@postgres:${{ job.services.postgres.ports[5432] }}/test'
         run: |
           flask test   
 
