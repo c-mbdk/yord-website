@@ -18,6 +18,7 @@ login_manager.login_view = 'auth.login'
 BASEDIR = os.path.abspath(os.path.dirname(__file__))
 admin_username = f'{os.environ.get("ADMIN_USERNAME")}'
 admin_password = f'{os.environ.get("ADMIN_PASSWORD")}'
+instance_file_location = os.path.join(BASEDIR, 'yord-website', 'instance')
 
 # -----------------------------
 # Application Factory Function
@@ -81,7 +82,6 @@ def register_blueprints(app):
     app.register_blueprint(general_routes.general_bp)
 
 def create_instance_log():
-    instance_file_location = os.path.join(BASEDIR, 'instance')
     instance_files = os.listdir(instance_file_location)
 
     if 'yord-website.log' not in instance_files:
@@ -94,7 +94,8 @@ def configure_logging(app):
         app.logger.handlers.extend(gunicorn_error_logger.handlers)
         app.logger.setLevel(logging.DEBUG)
     else:
-        file_handler = RotatingFileHandler('instance/yord-website.log',
+        instance_file_location
+        file_handler = RotatingFileHandler(f'{instance_file_location}/yord-website.log',
                                            maxBytes=16384,
                                            backupCount=20)
         file_formatter = logging.Formatter('%(asctime)s %(levelname)s %(threadName)s-%(thread)d: %(message)s [in %(filename)s:%(lineno)d]')
