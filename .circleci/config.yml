@@ -6,7 +6,7 @@ workflows:
   build-app-with-test:
     jobs:
       - build-and-test
-      - deploy
+      - deploy:
           requires: 
             - build-and-test
 jobs:
