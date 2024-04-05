@@ -1,0 +1,38 @@
+version: 2.1
+orbs:
+  python: circleci/python@2.1.1
+
+workflows:
+  build-app-with-test:
+    jobs:
+      - build-and-test
+      - deploy
+          requires:
+            - build-and-test
+jobs:
+  build-and-test:
+    docker:
+      - image: cimg/python:3.10.9
+        environment:
+          ADMIN_USERNAME: ${ADMIN_USERNAME}
+          ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+          APP_SECRET_KEY: ${APP_SECRET_KEY}
+          CSRF_SECRET_KEY: ${CSRF_SECRET_KEY}
+    steps:
+      - checkout
+      - python/install-packages:
+          pkg-manager: pip
+      - run:
+          name: Run tests
+          command: flask test      
+
+  deploy:
+    docker: 
+      - image: cimg/python:3.10 
+    steps:
+      - checkout
+      - run:
+          name: Deploy Over SSH
+          command: |
+            ssh-keyscan -H ssh.pythonanywhere.com >> ~/.ssh/known_hosts
+            ssh $SSH_USER@$SSH_HOST "cd yord-website; git pull";     
