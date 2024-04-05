@@ -81,10 +81,11 @@ def register_blueprints(app):
     app.register_blueprint(general_routes.general_bp)
 
 def create_instance_log():
-    instance_files = os.listdir('./instance')    
+    instance_file_location = os.path.join(BASEDIR, 'instance')
+    instance_files = os.listdir(instance_file_location)
 
     if 'yord-website.log' not in instance_files:
-        file = open('./instance/yord-website.log', 'a')
+        file = open(f'{instance_file_location}/yord-website.log', 'a')
         file.close()
 
 def configure_logging(app):
