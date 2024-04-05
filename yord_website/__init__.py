@@ -18,7 +18,7 @@ login_manager.login_view = 'auth.login'
 BASEDIR = os.path.abspath(os.path.dirname(__file__))
 admin_username = f'{os.environ.get("ADMIN_USERNAME")}'
 admin_password = f'{os.environ.get("ADMIN_PASSWORD")}'
-instance_file_location = os.path.join(BASEDIR, 'yord-website', 'instance')
+instance_file_location = os.path.join(BASEDIR, 'instance')
 
 # -----------------------------
 # Application Factory Function
