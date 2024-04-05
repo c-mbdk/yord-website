@@ -94,7 +94,6 @@ def configure_logging(app):
         app.logger.handlers.extend(gunicorn_error_logger.handlers)
         app.logger.setLevel(logging.DEBUG)
     else:
-        instance_file_location
         file_handler = RotatingFileHandler(f'{instance_file_location}/yord-website.log',
                                            maxBytes=16384,
                                            backupCount=20)
