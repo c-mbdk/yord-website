@@ -34,6 +34,8 @@ def create_app():
     configure_logging(app)
     register_cli_commands(app)
 
+    create_instance_log()
+
     # Check if the database needs to be initialized
     engine = sa.create_engine(app.config['SQLALCHEMY_DATABASE_URI'])
     inspector = sa.inspect(engine)
@@ -77,6 +79,13 @@ def register_blueprints(app):
     app.register_blueprint(auth_routes.auth_bp)
     app.register_blueprint(mailing_routes.mailing_bp)
     app.register_blueprint(general_routes.general_bp)
+
+def create_instance_log():
+    instance_files = os.listdir('./instance')    
+
+    if 'yord-website.log' not in instance_files:
+        file = open('./instance/yord-website.log', 'a')
+        file.close()
 
 def configure_logging(app):
     if app.config['LOG_WITH_GUNICORN']:
