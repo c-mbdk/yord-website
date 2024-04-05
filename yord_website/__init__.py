@@ -18,7 +18,8 @@ login_manager.login_view = 'auth.login'
 BASEDIR = os.path.abspath(os.path.dirname(__file__))
 admin_username = f'{os.environ.get("ADMIN_USERNAME")}'
 admin_password = f'{os.environ.get("ADMIN_PASSWORD")}'
-instance_file_location = os.path.join(BASEDIR, 'instance')
+location_split = BASEDIR.split('/yord_website')
+instance_file_location = location_split[0] + '/instance'
 
 # -----------------------------
 # Application Factory Function
@@ -35,7 +36,6 @@ def create_app():
     configure_logging(app)
     register_cli_commands(app)
 
-    create_instance_log()
 
     # Check if the database needs to be initialized
     engine = sa.create_engine(app.config['SQLALCHEMY_DATABASE_URI'])
@@ -89,6 +89,8 @@ def create_instance_log():
         file.close()
 
 def configure_logging(app):
+    create_instance_log()
+
     if app.config['LOG_WITH_GUNICORN']:
         gunicorn_error_logger = logging.getLogger('gunicorn.error')
         app.logger.handlers.extend(gunicorn_error_logger.handlers)
