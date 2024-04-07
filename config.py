@@ -1,4 +1,5 @@
 import os
+from yord_website import create_empty_dir, test_results
 
 # Determine the folder of the top-level directory of this project
 BASEDIR = os.path.abspath(os.path.dirname(__file__))
@@ -34,3 +35,4 @@ class TestingConfig(Config):
     SQLALCHEMY_DATABASE_URI = os.getenv('TEST_DATABASE_URI',
                                         default=f"sqlite:///{os.path.join(BASEDIR, 'instance', 'test.db')}")
     WTF_CSRF_ENABLED = False
+    create_empty_dir(test_results)

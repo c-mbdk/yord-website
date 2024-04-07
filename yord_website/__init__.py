@@ -37,8 +37,6 @@ def create_app():
     configure_logging(app)
     register_cli_commands(app)
 
-    create_empty_dir(test_results)
-
     # Check if the database needs to be initialized
     engine = sa.create_engine(app.config['SQLALCHEMY_DATABASE_URI'])
     inspector = sa.inspect(engine)
