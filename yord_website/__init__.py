@@ -20,6 +20,7 @@ admin_username = f'{os.environ.get("ADMIN_USERNAME")}'
 admin_password = f'{os.environ.get("ADMIN_PASSWORD")}'
 location_split = BASEDIR.split('/yord_website')
 instance_file_location = location_split[0] + '/instance'
+test_results = location_split[0] + '/test_results'
 
 # -----------------------------
 # Application Factory Function
@@ -81,19 +82,33 @@ def register_blueprints(app):
     app.register_blueprint(mailing_routes.mailing_bp)
     app.register_blueprint(general_routes.general_bp)
 
+
+def create_empty_dir(directory):
+    directory_exists = os.path.exists(directory)
+
+    if directory_exists:
+        try:
+            files = os.listdir(directory)
+            for file in files:
+               file_path = os.path.join(directory, file)
+               if os.path.isfile(file_path):
+                    os.remove(file_path)
+            print("All files deleted successfully.")
+        except OSError:
+            print("Error occurred while deleting files")
+    else:
+        os.mkdir(directory) 
+
 def create_instance_log():
-    instance_dir_exists = os.path.exists(instance_file_location)
-
-    if not instance_dir_exists:
-        os.mkdir(instance_file_location)
-
     instance_files = os.listdir(instance_file_location)
 
     if 'yord-website.log' not in instance_files:
         file = open(f'{instance_file_location}/yord-website.log', 'a')
-        file.close()
+        file.close()       
+
 
 def configure_logging(app):
+    create_empty_dir(instance_file_location)
     create_instance_log()
 
     if app.config['LOG_WITH_GUNICORN']:
@@ -125,18 +140,21 @@ def register_cli_commands(app):
     @app.cli.command()
     def test():
         """Runs all tests."""
+        create_empty_dir(test_results)
         pytest.main(["-s", "--cov=yord_website", "--junit-xml=test_coverage_reports", 'tests'])
         echo('All tests have been run and an XML report produced.')
 
     @app.cli.command()
     def unittest():
-        """Runs all unit tests."""    
+        """Runs all unit tests."""   
+        create_empty_dir(test_results) 
         pytest.main(["-s", "--cov=yord_website", 'tests/unit/'])
         echo('All unit tests have been run.')
 
     @app.cli.command()
     def functionaltest():
-        """Runs all functional tests."""    
+        """Runs all functional tests.""" 
+        create_empty_dir(test_results)   
         pytest.main(["-s", "--cov=yord_website", 'tests/functional/'])
         echo('All functional tests have been run.')
 
@@ -144,5 +162,6 @@ def register_cli_commands(app):
     @app.cli.command()
     def testhtml():
        """Runs all tests and generates a HTML report."""
+       create_empty_dir(test_results)
        pytest.main(["-s", "--cov", "--cov-report=html:test_coverage_reports", 'tests'])    
        echo('All tests have been run and an HTML report has been generated.')     
