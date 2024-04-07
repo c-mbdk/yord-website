@@ -99,6 +99,11 @@ def create_empty_dir(directory):
         os.mkdir(directory) 
 
 def create_instance_log():
+    instance_dir_exists = os.path.exists(instance_file_location)
+
+    if not instance_dir_exists:
+        os.mkdir(instance_file_location)
+
     instance_files = os.listdir(instance_file_location)
 
     if 'yord-website.log' not in instance_files:
