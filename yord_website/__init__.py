@@ -107,7 +107,7 @@ def create_instance_log():
 
 
 def configure_logging(app):
-    create_empty_dir(instance_file_location)
+    # create_empty_dir(instance_file_location)
     create_instance_log()
 
     if app.config['LOG_WITH_GUNICORN']:
