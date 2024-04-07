@@ -10,6 +10,8 @@ The latest iteration of this project includes:
 - new pages: contact us, about, gallery
 - tests: unit and functional tests with coverage
 - logs
+- automated deployment: a YAML file to run a build, test and deploy pipeline with CircleCI
+- a YAML file to run a test pipeline with GitHub Actions
 
 ## What's next?
 Over the course of upgrading this project, a backlog of features was naturally built. Some features started off as must-haves, some were swapped out for 'quick fixes' i.e., unfortunately introducing tech debt and some only became obvious during the implementation/testing. This is the backlog for features/changes to the test suite:

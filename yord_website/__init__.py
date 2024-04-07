@@ -86,7 +86,7 @@ def create_instance_log():
 
     if not instance_dir_exists:
         os.mkdir(instance_file_location)
-        
+
     instance_files = os.listdir(instance_file_location)
 
     if 'yord-website.log' not in instance_files:
@@ -125,8 +125,8 @@ def register_cli_commands(app):
     @app.cli.command()
     def test():
         """Runs all tests."""
-        pytest.main(["-s", "--cov=yord_website", 'tests'])
-        echo('All tests have been run.')
+        pytest.main(["-s", "--cov=yord_website", "--junit-xml=test_coverage_reports", 'tests'])
+        echo('All tests have been run and an XML report produced.')
 
     @app.cli.command()
     def unittest():
