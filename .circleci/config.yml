@@ -24,7 +24,9 @@ jobs:
           pkg-manager: pip
       - run:
           name: Run tests
-          command: flask test      
+          command: flask test
+      - store_test_results:
+        path: test-results          
 
   deploy:
     docker: 
