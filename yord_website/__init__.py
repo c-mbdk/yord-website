@@ -37,6 +37,7 @@ def create_app():
     configure_logging(app)
     register_cli_commands(app)
 
+    create_empty_dir(test_results)
 
     # Check if the database needs to be initialized
     engine = sa.create_engine(app.config['SQLALCHEMY_DATABASE_URI'])
@@ -140,21 +141,18 @@ def register_cli_commands(app):
     @app.cli.command()
     def test():
         """Runs all tests."""
-        create_empty_dir(test_results)
-        pytest.main(["-s", "--cov=yord_website", "--junit-xml=test_coverage_reports", 'tests'])
+        pytest.main(["-s", "--cov=yord_website", "--junit-xml=test_results/junit.xml", 'tests'])
         echo('All tests have been run and an XML report produced.')
 
     @app.cli.command()
     def unittest():
-        """Runs all unit tests."""   
-        create_empty_dir(test_results) 
+        """Runs all unit tests."""    
         pytest.main(["-s", "--cov=yord_website", 'tests/unit/'])
         echo('All unit tests have been run.')
 
     @app.cli.command()
     def functionaltest():
-        """Runs all functional tests.""" 
-        create_empty_dir(test_results)   
+        """Runs all functional tests."""    
         pytest.main(["-s", "--cov=yord_website", 'tests/functional/'])
         echo('All functional tests have been run.')
 
@@ -162,6 +160,5 @@ def register_cli_commands(app):
     @app.cli.command()
     def testhtml():
        """Runs all tests and generates a HTML report."""
-       create_empty_dir(test_results)
        pytest.main(["-s", "--cov", "--cov-report=html:test_coverage_reports", 'tests'])    
        echo('All tests have been run and an HTML report has been generated.')     
