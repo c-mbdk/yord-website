@@ -26,7 +26,7 @@ jobs:
           name: Run tests
           command: flask test
       - store_test_results:
-          path: test_coverage_reports          
+          path: test_results          
 
   deploy:
     docker: 
