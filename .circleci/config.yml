@@ -26,7 +26,6 @@ jobs:
           name: Run tests
           command: |
             flask test
-            echo $?
             pytest_exit_status=$?
             if [ $pytest_exit_status -eq 0 ]; then
               echo "export TEST_RUN_STATUS='PASSED'" >> "$BASH_ENV"
