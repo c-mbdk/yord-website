@@ -32,16 +32,16 @@ jobs:
           name: Set test run status based on Pytest exit code
           command: | 
             if [[ $TEST_EXIT_CODE == 0 ]]; then 
-              echo 'export TEST_RUN_STATUS="PASS"' >> "$BASH_ENV"
+              echo 'export TEST_RUN_STATUS=PASSED' >> "$BASH_ENV"
             else
-              echo 'export TEST_RUN_STATUS="FAILED"' >> "$BASH_ENV"
+              echo 'export TEST_RUN_STATUS=FAILED' >> "$BASH_ENV"
             fi     
       - store_test_results:
           path: test_results
       - run:
           name: Print Test Run Status and exit code
           command: |
-            echo 'Test Run Status: `${TEST_RUN_STATUS}`'
+            echo "Test Run Status: ${TEST_RUN_STATUS}"
             if [[ $TEST_RUN_STATUS == 'PASS' ]]; then exit 0'
             else
               exit 1
