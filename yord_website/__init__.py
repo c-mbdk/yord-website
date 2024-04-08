@@ -128,7 +128,7 @@ def register_cli_commands(app):
     def test():
         """Runs all tests."""
         echo('Running all tests and producing an XML report...')
-        pytest.main(["--tb=no", "--minpass=86", "--junit-xml=test_results/junit.xml", 'tests'])
+        exit(pytest.main(["-s", "--minpass=86", "--junit-xml=test_results/junit.xml", 'tests']))
         
 
     @app.cli.command()
