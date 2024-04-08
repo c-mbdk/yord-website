@@ -26,6 +26,7 @@ jobs:
           name: Run tests
           command: |
             flask test
+            $?
             echo 'export TEST_EXIT_CODE=$?' >> "$BASH_ENV"
       - run:
           name: Set test run status based on Pytest exit code
