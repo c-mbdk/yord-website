@@ -82,22 +82,6 @@ def register_blueprints(app):
     app.register_blueprint(general_routes.general_bp)
 
 
-def create_empty_dir(directory):
-    directory_exists = os.path.exists(directory)
-
-    if directory_exists:
-        try:
-            files = os.listdir(directory)
-            for file in files:
-               file_path = os.path.join(directory, file)
-               if os.path.isfile(file_path):
-                    os.remove(file_path)
-            print("All files deleted successfully.")
-        except OSError:
-            print("Error occurred while deleting files")
-    else:
-        os.mkdir(directory) 
-
 def create_instance_log():
     instance_dir_exists = os.path.exists(instance_file_location)
 
@@ -112,7 +96,6 @@ def create_instance_log():
 
 
 def configure_logging(app):
-    # create_empty_dir(instance_file_location)
     create_instance_log()
 
     if app.config['LOG_WITH_GUNICORN']:

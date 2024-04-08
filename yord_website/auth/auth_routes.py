@@ -37,7 +37,6 @@ def login():
         user.is_active = True
         login_user(user, remember=form.remember_me.data)
         return redirect(url_for('mailing.view_members'))
-    print(form.errors)
     return render_template('auth/login.html', form=form)
 
 
