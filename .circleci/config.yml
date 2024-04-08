@@ -24,11 +24,14 @@ jobs:
           pkg-manager: pip
       - run:
           name: Run tests
-          command: flask test
+          command: |
+            flask test
+            exitcode=$?
+            echo 'export TEST_EXIT_CODE=$exitcode' >> "$BASH_ENV"
       - run:
           name: Set test run status based on Pytest exit code
           command: | 
-            if [ $? == 0 ]; then 
+            if [ $TEST_EXIT_CODE == 0 ]; then 
               echo 'export TEST_RUN_STATUS="PASS"' >> "$BASH_ENV"
             else
               echo 'export TEST_RUN_STATUS="FAILED"' >> "$BASH_ENV"   
