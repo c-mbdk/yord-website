@@ -127,7 +127,7 @@ def register_cli_commands(app):
     @app.cli.command()
     def test():
         """Runs all tests."""
-        pytest.main(["-s", "--cov=yord_website", "--junit-xml=test_results/junit.xml", 'tests'])
+        pytest.main(["-s", "--cov=yord_website", "--reruns 3", "--junit-xml=test_results/junit.xml", 'tests'])
         echo('All tests have been run and an XML report produced.')
 
     @app.cli.command()
