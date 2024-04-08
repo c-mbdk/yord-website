@@ -23,7 +23,7 @@ def test_run_all_tests(cli_test_client):
     """    
     output = cli_test_client.invoke(args=['test'])
     assert output.exit_code == 0
-    assert 'All tests have been run and an XML report produced.' in output.output
+    assert 'Running all tests and producing an XML report...' in output.output
 
 @pytest.mark.skip(reason="takes too long to run")
 def test_run_unit_tests(cli_test_client):
