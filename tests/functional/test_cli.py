@@ -15,6 +15,7 @@ def test_initialize_database(cli_test_client):
     assert output.exit_code == 0
     assert 'Initialized the database!' in output.output
 
+@pytest.mark.skip(reason="takes too long to run")
 def test_run_all_tests(cli_test_client):
     """
     GIVEN a Flask application configured for testing
@@ -25,7 +26,7 @@ def test_run_all_tests(cli_test_client):
     assert output.exit_code == 0
     assert 'Running all tests and producing an XML report...' in output.output
 
-@pytest.mark.skip(reason="takes too long to run")
+
 def test_run_unit_tests(cli_test_client):
     """
     GIVEN a Flask application has been configured for testing

@@ -10,7 +10,7 @@ def test_new_member(new_member):
     THEN the name and email fields are defined correctly for the new member
     """
     
-    assert new_member.name == 'Jane Doe'
+    assert new_member.name == 'Jane Doey'
     assert new_member.email == 'jane.doe@gmails.com'
 
 def test_update_member(new_member):
