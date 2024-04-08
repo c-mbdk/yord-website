@@ -42,7 +42,7 @@ jobs:
           name: Print Test Run Status and exit code
           command: |
             echo "Test Run Status: ${TEST_RUN_STATUS}"
-            if [[ $TEST_RUN_STATUS == 'PASS' ]]; then exit 0'
+            if [[ $TEST_RUN_STATUS == 'PASS' ]]; then exit 0
             else
               exit 1
             fi  
