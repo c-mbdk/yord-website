@@ -26,15 +26,10 @@ jobs:
           name: Run tests
           command: |
             flask test
-            $?
-            echo 'export TEST_EXIT_CODE=$?' >> "$BASH_ENV"
-      - run:
-          name: Set test run status based on Pytest exit code
-          command: | 
-            if [[ ${TEST_EXIT_CODE} == 0 ]]; then 
+            if [ $? -eq 0 ]; then
               echo "export TEST_RUN_STATUS='PASSED'" >> "$BASH_ENV"
             else
-              echo "export TEST_RUN_STATUS='FAILED'" >> "$BASH_ENV"
+                echo "export TEST_RUN_STATUS='FAILED'" >> "$BASH_ENV"
             fi     
       - store_test_results:
           path: test_results
