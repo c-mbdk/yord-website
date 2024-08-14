@@ -8,6 +8,7 @@ general_bp = Blueprint(
     url_prefix='/general'
 )
 
+@general_bp.route('/')
 @general_bp.route('/home', methods=['POST', 'GET'])
 def home():
     form = RegistrationForm()
