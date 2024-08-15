@@ -4,8 +4,7 @@ from yord_website.models import Member, RegistrationForm, ContactForm
 
 general_bp = Blueprint(
     'general', __name__,
-    template_folder='templates',
-    url_prefix='/general'
+    template_folder='templates'
 )
 
 @general_bp.route('/', methods=['POST', 'GET'])

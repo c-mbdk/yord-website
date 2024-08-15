@@ -5,8 +5,7 @@ from yord_website.models import Member, EditMemberDetailsForm
 
 mailing_bp = Blueprint(
     'mailing', __name__,
-    template_folder='templates',
-    url_prefix='/mailing'
+    template_folder='templates'
 )
 
 
