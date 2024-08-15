@@ -77,9 +77,9 @@ def register_blueprints(app):
     from .mailing import mailing_routes
     from .general import general_routes
 
-    app.register_blueprint(auth_routes.auth_bp, url_prefix='/auth')
-    app.register_blueprint(mailing_routes.mailing_bp, url_prefix='/mailing')
-    app.register_blueprint(general_routes.general_bp, url_prefix='/general')
+    app.register_blueprint(auth_routes.auth_bp)
+    app.register_blueprint(mailing_routes.mailing_bp)
+    app.register_blueprint(general_routes.general_bp)
 
 
 def create_instance_log():

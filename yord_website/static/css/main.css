@@ -279,6 +279,7 @@ nav .nav-user {
   color: #3b5998;
   background: #fefefe;
   border-color: #3b5998;
+  cursor: pointer;
 }
 
 .social-footer-icons .social-button.twitter {
@@ -289,6 +290,7 @@ nav .nav-user {
   color: #55acee;
   background: #fefefe;
   border-color: #55acee;
+  cursor: pointer;
 }
 
 .social-footer-icons .social-button.instagram {
@@ -299,6 +301,7 @@ nav .nav-user {
   color: #125688;
   background: #fefefe;
   border-color: #125688;
+  cursor: pointer;
 }
 
 
