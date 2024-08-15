@@ -53,12 +53,12 @@ def contact():
 
     return render_template('general/contact.html', form=form)
 
-@general_bp.route('gallery', methods=["GET"])
+@general_bp.route('/gallery', methods=["GET"])
 def gallery():
     """Gallery Page"""
     return render_template('general/gallery.html')
 
-@general_bp.route('error')
+@general_bp.route('/error')
 def error_signup():
     """Error Page for failed mailing list registration"""
     return render_template('general/error-signup.html')
